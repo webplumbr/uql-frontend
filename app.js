@@ -38,6 +38,31 @@
             $rootScope.$broadcast('chosenLibrary', library);
         }
 
+        $scope.searchLibraries = function (query) {
+
+            if (query.length == 0) {
+                LibraryService.getLibraryHours().then(function (result) {
+                    $scope.locations = result;
+                });
+            }
+
+            if  (query.length < 3) {
+                return;
+            }
+
+            query = query.toLowerCase();
+
+            var libraries = [];
+            for (var i in $scope.locations) {
+                //find matching libraries
+                if ($scope.locations[i].name.toLowerCase().indexOf(query) !== -1) {
+                    libraries.push($scope.locations[i]);
+                }
+            }
+
+            $scope.locations = libraries;
+        }
+
         LibraryService.getLibraryHours().then(function (result) {
             $scope.locations = result;
         });
