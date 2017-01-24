@@ -1,0 +1,14 @@
+{
+  "name": "uql-frontend",
+  "version": "1.0.0",
+  "description": "UQ Library Frontend Application",
+  "main": "index.html",
+  "scripts": {
+    "lite": "lite-server"
+  },
+  "author": "Prasanna T K Subramanian",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.2.2"
+  }
+}

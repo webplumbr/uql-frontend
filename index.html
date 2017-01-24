@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="library">
+<head>
+    <meta charset="UTF-8">
+    <title>UQ Library</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-sm-3" ng-controller="LibraryListing">
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-repeat="location in locations" class="isActive">
+                    <a href="#" ng-click="selectedLibrary(location)">{{ location.name }}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-9" ng-controller="LibraryDetails">
+            <table ng-if="library" class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <td><a href="{{ library.url ? library.url : '#' }}">{{ library.name }}</a></td>
+                </tr>
+                <tr>
+                    <th>Day</th>
+                    <td>{{ library.day }}</td>
+                </tr>
+                <tr>
+                    <th>Currently open</th>
+                    <td><span class="label label-{{ isCurrentlyOpen() ? 'success' : 'danger' }}">{{ isCurrentlyOpen() ? 'Open' : 'Closed' }}</span></td>
+                </tr>
+                <tr ng-if="library.contact">
+                    <th>Contact</th>
+                    <td>{{ library.contact }}</td>
+                </tr>
+                <tr ng-if="library.fn">
+                    <th>Comments</th>
+                    <td>{{ library.fn }}</td>
+                </tr>
+                <tr ng-if="library.departments" ng-repeat="dept in library.departments">
+                    <th>Department</th>
+                    <td>
+                        <dl>
+                            <dt>Name</dt>
+                            <dd>{{ dept.name }}</dd>
+                            <dt>Day</dt>
+                            <dd>{{ dept.day }}</dd>
+                            <dt>Currently open</dt>
+                            <dd><span class="label label-{{ dept.times.currently_open ? 'success' : 'danger' }}">{{ dept.times.currently_open ? 'Open' : 'Closed' }}</span></dd>
+                            <dt>Timings</dt>
+                            <dd>{{ dept.rendered }}</dd>
+                        </dl>
+                    </td>
+                </tr>
+                <tr ng-if="availability">
+                    <th>Computer availability</th>
+                    <td>
+                        <table class="table table-condensed">
+                            <tr>
+                                <th>Room</th>
+                                <th>Available</th>
+                                <th>Occupied</th>
+                            </tr>
+                            <tr ng-repeat="(room, avl) in availability.availability">
+                                <td>{{ room }}</td>
+                                <td>{{ avl.Available }}</td>
+                                <td>{{ avl.Occupied }}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="application/javascript" src="angular.min.js"></script>
+<script type="application/javascript" src="app.js"></script>
+</body>
+</html>
