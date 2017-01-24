@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-xs-12 col-sm-3" ng-controller="LibraryListing">
             <div class="form-group">
-                <input type="search" class="form-control" ng-model="query" ng-change="searchLibraries(query)">
+                <input type="search" placeholder="Enter a library name" class="form-control" ng-model="query" ng-change="searchLibraries(query)">
             </div>
             <ul class="nav nav-pills nav-stacked">
                 <li ng-repeat="location in locations" class="isActive">
