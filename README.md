@@ -31,3 +31,7 @@ http://localhost:3000/
 
 The application uses bootstrap variant [Flatly](https://bootswatch.com/flatly/) for theme. The design allows scaling across different screen sizes.
 
+## Demo
+
+A live version of this application can be accessed at [http://uql-frontend.webplumbr.com](http://uql-frontend.webplumbr.com)
+
